@@ -41,6 +41,7 @@ void FillMatrix(int** matrix, int row, int col)
 	{
 		for (int j = 0; j < col; j++)
 		{
+			std::cout << "Enter [" << i + 1 <<"][" << j + 1 << "] element: ";
 			std::cin >> matrix[i][j];
 		}
 	}
@@ -56,19 +57,35 @@ void ShowMatrix(int** matrix, int row, int col)
 		std::cout << std::endl;
 	}
 }
-void AddMatrix(int** m1, int** m2, int** m3, int rows,int cols)
+void AddMatrix(int** matrix1, int** matrix2, int rows,int cols)
 {
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
 		{
-			m3[i][j] = m1[i][j] + m2[i][j];
+			matrix1[i][j] += matrix2[i][j];
 		}
 	}
 }
-int** SubstractMatrix(int** m1, int** m2, int** m3)
+void SubstractMatrix(int** matrix1, int** matrix2, int rows, int cols)
 {
-	return 0;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			matrix1[i][j] -= matrix2[i][j];
+		}
+	}
+}
+void NumberMultiply(int** matrix, int rows, int cols,int number)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			matrix[i][j] *= number;
+		}
+	}
 }
 //TODO::
 //Zrobiæ menu na switch
