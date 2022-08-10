@@ -87,6 +87,30 @@ void NumberMultiply(int** matrix, int rows, int cols,int number)
 		}
 	}
 }
+void MatrixbyMatrix(int** matrix1, int** matrix2, int** ResultMatrix, int M1rows, int M2rows, int M2cols)
+{
+	for (int i = 0; i < M1rows; i++) 
+	{
+		for (int j = 0; j < M2cols; j++) 
+		{
+			ResultMatrix[i][j] = 0;
+			for (int k = 0; k < M2rows; k++) 
+			{
+				ResultMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
+			}
+		}
+	}
+}
+void TransposeMatrix(int** matrix1, int** matrix2, int M1rows,int M1cols)
+{
+	for (int i = 0; i < M1rows; i++)
+	{
+		for (int j = 0; j < M1cols; j++)
+		{
+			matrix2[j][i] = matrix1[i][j];
+		}
+	}
+}
 //TODO::
 //Zrobiæ menu na switch
 //Zrobiæ Pozosta³e funkcje dzia³añ na macierzy

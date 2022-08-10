@@ -8,7 +8,7 @@ int main()
 	while (1)
 	{
 		system("cls");
-		std::cout << "\n\tMatrix Calculator 0.5 ";
+		std::cout << "\n\tMatrix Calculator 0.99 ";
 		std::cout << "\n\n Created By: Jakub Olszak | flexer89";
 		std::cout << "\n\n";
 		std::cout << "\n 1. Add Two Matrix";
@@ -142,7 +142,63 @@ int main()
 			break; 
 		case 3:
 			system("cls");
-			std::cout << "Multiply Matrix by Matrix\n";
+			std::cout << "Multiply Matrix by Matrix\nRemember! the number of columns in the first matrix must be equal to the number of rows in the second matrix\n\n";
+
+			std::cout << "Give dimensions of first Matrix: \n";
+			std::cout << "Rows :=>";
+			std::cin >> M1rows;
+			std::cout << "Columns :=>";
+			std::cin >> M1cols;
+
+			std::cout << "\nGive dimensions of second Matrix: \n";
+			std::cout << "Rows :=>";
+			std::cin >> M2rows;
+			std::cout << "Columns :=>";
+			std::cin >> M2cols;
+			if (M1cols == M2rows)
+			{
+				system("cls");
+				std::cout << "Dimensions are correct!\n\n";
+				system("pause");
+				//If conditions are correct, Pointers to dynamic arrays are created
+				int** Matrix1 = nullptr;
+				int** Matrix2 = nullptr;
+				int** ResultMatrix = nullptr;
+
+				Matrix1 = CreateMatrix(Matrix1, M1rows, M1cols);
+				Matrix2 = CreateMatrix(Matrix2, M2rows, M2cols);
+				ResultMatrix = CreateMatrix(ResultMatrix, M1rows, M2cols);
+
+				system("cls");
+				std::cout << "Fill First Matrix\n";
+				FillMatrix(Matrix1, M1rows, M1cols);
+				system("cls");
+				std::cout << "Fill Second Matrix\n";
+				FillMatrix(Matrix2, M2rows, M2cols);
+				system("cls");
+				std::cout << "First Matrix:\n";
+				ShowMatrix(Matrix1, M1rows, M1cols);
+				system("pause");
+				std::cout << "Second Matrix:\n";
+				ShowMatrix(Matrix2, M2rows, M2cols);
+				system("pause");
+				MatrixbyMatrix(Matrix1, Matrix2, ResultMatrix, M1rows, M2rows, M2cols);
+				system("cls");
+				std::cout << "Result Matrix:\n";
+				ShowMatrix(ResultMatrix, M1rows, M2cols);
+
+				//Deleting pointers, clearing memory
+				DeleteMatrix(Matrix1, M1rows);
+				DeleteMatrix(Matrix2, M2rows);
+				DeleteMatrix(ResultMatrix, M1rows);
+			}
+			else
+			{
+				system("cls");
+				std::cout << "You entered wrong dimensions. Try again.\n";
+				system("pause");
+				break;
+			}
 			system("pause");
 			break;
 		case 4:{
@@ -178,11 +234,41 @@ int main()
 		DeleteMatrix(Matrix, M1rows);
 		system("pause");
 		break; }
-		case 5:
+		case 5: {
 			system("cls");
-			std::cout << "Transpose Matrix\n";
+			std::cout << "Transpose Matrix\n\n";
+			std::cout << "Give dimensions of Matrix: \n";
+			std::cout << "Rows :=>";
+			std::cin >> M1rows;
+			std::cout << "Columns :=>";
+			std::cin >> M1cols;
+
+			system("cls");
 			system("pause");
-			break;
+
+			int** Matrix1 = nullptr;
+			int** ResultMatrix = nullptr;
+
+			Matrix1 = CreateMatrix(Matrix1, M1rows, M1cols);
+			ResultMatrix = CreateMatrix(ResultMatrix, M1cols, M1rows);
+
+			system("cls");
+			std::cout << "Fill Matrix\n";
+			FillMatrix(Matrix1, M1rows, M1cols);
+			system("cls");
+			std::cout << "First Matrix:\n";
+			ShowMatrix(Matrix1, M1rows, M1cols);
+			system("pause");
+			TransposeMatrix(Matrix1, ResultMatrix, M1rows, M1cols);
+			system("cls");
+			std::cout << "Result Matrix:\n";
+			ShowMatrix(ResultMatrix, M1cols, M1rows);
+
+			//Deleting pointers, clearing memory
+			DeleteMatrix(Matrix1, M1rows);
+			DeleteMatrix(ResultMatrix, M1cols);
+			system("pause");
+			break; }
 		case 6:
 			system("cls");
 			std::cout << "Exit a program\n";
